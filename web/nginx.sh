@@ -30,7 +30,7 @@ systemctl enable nginx &>>$LOGFILE
 VALIDATE $? "Enable Nginx"
 
 systemctl start nginx &>>$LOGFILE
-VALIDATE $? "Start Nginx"
+VALIDATE $? "Starting nginx"
 
 rm -rf /usr/share/nginx/html/* &>>$LOGFILE
 VALIDATE $? "Remove default html directory"
