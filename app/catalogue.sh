@@ -6,8 +6,8 @@ SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
 
 VALIDATE(){
-    id [ $1 -ne 0 ]
-    then
+   if [ $1 -ne 0 ]
+   then
         echo "$2 FAILURE"
         exit 1
     else
