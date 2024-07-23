@@ -24,16 +24,16 @@ else
 fi
 
 cp /home/ec2-user/shellscript-roboshop/mongo.repo /etc/yum.repos.d/mongo.repo &>>LOGFILE
-validate $? "copied mongo.repo"
+VALIDATE $? "copied mongo.repo"
 
-dnf install mongodb-org -y 
-validate $? "install mongo org"
+dnf install mongodb-org -y &>>LOGFILE
+VALIDATE $? "install mongo org"
 
-systemctl enable mongod
-validate $? "enable db"
+systemctl enable mongod &>>LOGFILE
+VALIDATE $? "enable db"
 
-systemctl start mongod
-validate $? "start mongod"
+systemctl start mongod &>>LOGFILE
+VALIDATE $? "start mongod"
 
 
 
