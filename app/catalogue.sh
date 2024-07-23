@@ -20,6 +20,7 @@ then
     echo "please run with super user"
 else
     echo "you are a super user"
+fi
 
 
 dnf module disable nodejs -y &>>$LOGFILE
