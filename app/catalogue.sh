@@ -53,7 +53,7 @@ VALIDATE $? "Changing to /app directory"
 rm -rf /app/*
 VALIDATE $? "Cleaning up /app directory"
 
-unzip /tmp/catalogue.zip &>>$LOGFILE
+unzip -d /tmp/catalogue.zip &>>$LOGFILE
 VALIDATE $? "Extracted catalogue code"
 
 npm install &>>$LOGFILE
