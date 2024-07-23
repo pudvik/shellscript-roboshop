@@ -24,10 +24,10 @@ else
 fi
 
 dnf install nginx -y &>>$LOGFILE
-VALIDATE $? "Install Nginx"
+VALIDATE $? "Installing nginx"
 
 systemctl enable nginx &>>$LOGFILE
-VALIDATE $? "Enable Nginx"
+VALIDATE $? "Enabling nginx"
 
 systemctl start nginx &>>$LOGFILE
 VALIDATE $? "Starting nginx"
