@@ -48,7 +48,11 @@ curl -o curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/cata
 VALIDATE $? "Downloading backend code"
 
 cd /app
-#rm -rf /app/*
+VALIDATE $? "Changing to /app directory"
+
+rm -rf /app/*
+VALIDATE $? "Cleaning up /app directory"
+
 unzip /tmp/catalogue.zip &>>$LOGFILE
 VALIDATE $? "Extracted catalogue code"
 
