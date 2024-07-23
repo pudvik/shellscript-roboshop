@@ -23,7 +23,7 @@ else
     echo "You are super user."
 fi
 
-cp /root/shellscript-roboshop/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
+cp /home/ec2-user/shellscript-roboshop/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 VALIDATE $? "Copied mongo.repo"
 
 dnf install mongodb-org -y &>> $LOGFILE
