@@ -34,3 +34,10 @@ VALIDATE $? "Enabled mongod service"
 
 systemctl start mongod &>> $LOGFILE
 VALIDATE $? "Started mongod service"
+
+# Update MongoDB configuration to listen on all IP addresses
+sed -i 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/' /etc/mongod.conf &>> $LOGFILE
+VALIDATE $? "Updated MongoDB bindIp configuration"
+
+systemctl restart mongod &>>LOGFILE
+VALIDATE$? "Restart mongod"
