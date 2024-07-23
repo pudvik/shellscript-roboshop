@@ -44,7 +44,7 @@ fi
 mkdir -p /app &>>$LOGFILE
 VALIDATE $? "Creating app directory"
 
-curl -o curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>>$LOGFILE
+curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOGFILE
 VALIDATE $? "Downloading backend code"
 
 cd /app
@@ -62,6 +62,8 @@ VALIDATE $? "Installing nodejs dependencies"
 #check your repo and path
 cp /home/ec2-user/shellscript-roboshop/catalogue.service /etc/systemd/system/catalogue.service &>>$LOGFILE
 VALIDATE $? "Copied backend service"
+
+
 
 systemctl daemon-reload &>>$LOGFILE
 VALIDATE $? "Daemon Reload"
