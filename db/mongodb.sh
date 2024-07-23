@@ -40,4 +40,4 @@ sed -i 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/' /etc/mongod.conf &>> $LOGFILE
 VALIDATE $? "Updated MongoDB bindIp configuration"
 
 systemctl restart mongod &>>LOGFILE
-VALIDATE$? "Restart mongod"
+VALIDATE $? "Restart mongod"
