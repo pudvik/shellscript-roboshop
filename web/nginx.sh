@@ -23,32 +23,36 @@ else
     echo "You are super user."
 fi
 
-dnf install nginx -y &>>$LOGFILE
-VALIDATE $? "Installing nginx"
+dnf install nginx -y &>> $LOGFILE
+VALIDATE $? "Installing Nginx"
 
-systemctl enable nginx &>>$LOGFILE
-VALIDATE $? "Enabling nginx"
+# Enable and start Nginx service
+systemctl enable nginx &>> $LOGFILE
+VALIDATE $? "Enabling Nginx"
 
-systemctl start nginx &>>$LOGFILE
-VALIDATE $? "Starting nginx"
+systemctl start nginx &>> $LOGFILE
+VALIDATE $? "Starting Nginx"
 
-rm -rf /usr/share/nginx/html/* &>>$LOGFILE
-VALIDATE $? "Remove default html directory"
+# Remove default HTML files
+rm -rf /usr/share/nginx/html/* &>> $LOGFILE
+VALIDATE $? "Removed default HTML directory"
 
-curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip &>>LOGFILE
-VALIDATE $? " Download nginx code"
+# Download and extract web application code
+curl -o /tmp/web.zip https://roboshop-builds.s3.amazonaws.com/web.zip &>> $LOGFILE
+VALIDATE $? "Downloading web code"
 
-cd /usr/share/nginx/html &>>$LOGFILE
-VALIDATE $? "Move to html directory"
+cd /usr/share/nginx/html &>> $LOGFILE
+VALIDATE $? "Moved to HTML directory"
 
-unzip /tmp/web.zip &>>$LOGFILE
+unzip /tmp/web.zip &>> $LOGFILE
 VALIDATE $? "Extracting web code"
 
-cp /home/ec2-user/shellscript-roboshop/roboshop.conf /etc/nginx/default.d/roboshop.conf &>>LOGFILE
-VALIDATE $? "Copied conf file"
+# Copy configuration file
+cp /home/ec2-user/shellscript-roboshop/roboshop.conf /etc/nginx/default.d/roboshop.conf &>> $LOGFILE
+VALIDATE $? "Copied configuration file"
 
-
-systemctl restart nginx &>>$LOGFILE
-VALIDATE $? "Restart Nginx"
+# Restart Nginx service
+systemctl restart nginx &>> $LOGFILE
+VALIDATE $? "Restarting Nginx"
 
 
