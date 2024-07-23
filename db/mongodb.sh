@@ -8,33 +8,29 @@ LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
 VALIDATE(){
    if [ $1 -ne 0 ]
    then
-        echo  "$2 FAILURE "
+        echo "$2 FAILURE"
         exit 1
     else
-        echo  "$2 SUCCESS"
+        echo "$2 SUCCESS"
     fi
 }
 
-if [ $USERID -ne 0]
+if [ $USERID -ne 0 ]
 then 
-    echo "please run the script with root access"
+    echo "Please run the script with root access"
     exit 1
 else
-    echo "you are super user"
+    echo "You are super user"
 fi
 
-cp /root/shellscript-roboshop/mongo.repo /etc/yum.repos.d/mongo.repo &>>LOGFILE
-VALIDATE $? "copied mongo.repo"
+cp /root/shellscript-roboshop/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
+VALIDATE $? "Copied mongo.repo"
 
-dnf install mongodb-org -y &>>LOGFILE
-VALIDATE $? "install mongo org"
+dnf install mongodb-org -y &>> $LOGFILE
+VALIDATE $? "Installed mongodb-org"
 
-systemctl enable mongod &>>LOGFILE
-VALIDATE $? "enable db"
+systemctl enable mongod &>> $LOGFILE
+VALIDATE $? "Enabled mongod service"
 
-systemctl start mongod &>>LOGFILE
-VALIDATE $? "start mongod"
-
-
-
-
+systemctl start mongod &>> $LOGFILE
+VALIDATE $? "Started mongod service"
