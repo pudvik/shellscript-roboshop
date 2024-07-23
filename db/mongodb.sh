@@ -21,6 +21,7 @@ then
     exit 1
 else
     echo "you are super user"
+fi
 
 cp /home/ec2-user/shellscript-roboshop/mongo.repo /etc/yum.repos.d/mongo.repo &>>LOGFILE
 validate $? "copied mongo.repo"
